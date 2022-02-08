@@ -1,0 +1,57 @@
+directive @deprecated(
+  reason: String = "No longer supported"
+) on FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | ENUM_VALUE
+
+
+type Query {
+    # List of agents in the account
+    profile(_id: ID): Profile
+    # List of agents in the account2
+    users: [Profile]
+}
+
+# ... username is the author name , this is an example of a dropped comment
+type Profile {
+    _id: ID
+    username: String @deprecated(reason: "Use newField.")
+    email: String
+    password: String
+    rol: String
+    salary: String
+    date: String
+    date2: String
+    lastName: String
+    address: String
+}
+
+type Mutation {
+    createUser(input: ProfileInput): Profile
+    updateUser(_id: ID, input: ProfileUpdateInput): Profile
+    deleteUser(_id: ID): Profile
+}
+
+input ProfileUpdateInput {
+    _id: ID,
+    username: String!,
+    email: String!,
+    password: String!,
+    rol: String!,
+    salary: String,
+    date: String,
+    date2: String,
+    lastName: String,
+    address: String
+}
+
+input ProfileInput {
+    _id: ID,
+    username: String!,
+    email: String!,
+    password: String!,
+    rol: String!,
+    salary: String,
+    date: String,
+    date2: String,
+    lastName: String,
+    address: String
+}
