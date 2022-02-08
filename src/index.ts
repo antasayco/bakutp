@@ -7,5 +7,5 @@ import './database'
 const {PORT} = conf.vars
 
 app.listen(PORT, () => {
-  console.log(`Server on port ${PORT}`);
+  console.log(`Server on port ${PORT} \n Graphql IDE: http://localhost:${PORT}/graphql`);
 });
