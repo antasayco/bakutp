@@ -1,0 +1,4 @@
+type Campaing {
+    id: ID,
+    name: String
+}

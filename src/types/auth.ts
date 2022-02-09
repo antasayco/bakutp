@@ -2,7 +2,7 @@ import { GraphQLSchema } from "graphql";
 
 export interface AuthDirective {
     (directiveName: string , getUserFn: GetUserFn): {
-        authDirectiveTypeDefs: string,
+        authDirectiveTypeDefs: string | string[],
         authDirectiveTransformer: (schema:GraphQLSchema) => GraphQLSchema
     }
 }

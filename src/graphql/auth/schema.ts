@@ -1,7 +1,7 @@
 import { mapSchema, getDirective, MapperKind } from '@graphql-tools/utils'
 import { GraphQLSchema, defaultFieldResolver } from 'graphql'
 import { makeExecutableSchema } from '@graphql-tools/schema'
-import { loadFile } from 'graphql-import-files'
+import { loadFilesSync } from '@graphql-tools/load-files'
 
 import { AuthDirective} from '../../types/auth'
 import getUser from './getUser'
@@ -9,7 +9,7 @@ import getUser from './getUser'
 const authDirective:AuthDirective = ( directiveName, getUserFn) => {
     const typeDirectiveArgumentMaps: Record<string, any> = {}
     return {
-      authDirectiveTypeDefs: loadFile('src/graphql/auth/directive.gql'),
+      authDirectiveTypeDefs: [...loadFilesSync('src/graphql/auth/directive.gql')],
       authDirectiveTransformer: (schema: GraphQLSchema) => mapSchema(schema, {
         [MapperKind.TYPE]: type => {
             const authDirective = getDirective(schema, type, directiveName)?.[0]
@@ -41,7 +41,8 @@ const { authDirectiveTypeDefs, authDirectiveTransformer } = authDirective('auth'
   
 let schema = makeExecutableSchema({
     typeDefs: [
-      authDirectiveTypeDefs
+      ...authDirectiveTypeDefs
     ]
 })
+
 export default schema = authDirectiveTransformer(schema)

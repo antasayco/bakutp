@@ -6,7 +6,6 @@ import schema from './graphql/index'
 
 checkVars();
 const app = express();
-
 app.use('/',graphqlHTTP({
     graphiql: true,
     schema
