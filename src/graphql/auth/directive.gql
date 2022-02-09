@@ -1,8 +1,8 @@
 directive @auth(
-    requires: Role = ADMIN,
+    requires: RoleType = ADMIN,
 ) on OBJECT | FIELD_DEFINITION
 
-enum Role {
+enum RoleType {
     ADMIN
     REVIEWER
     USER

@@ -1,9 +1,4 @@
-declare module '*.graphql' {
-  import {DocumentNode} from 'graphql';
-
-  const value: DocumentNode;
-  export = value;
-}
+export {};
 declare global {
     namespace NodeJS {
       interface ProcessEnv {
