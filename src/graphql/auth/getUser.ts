@@ -1,13 +1,18 @@
 import { GetUserFn } from "../../types/auth"
 
 const getUser:GetUserFn = (token: string) => {
-    const roles = ['UNKNOWN', 'USER', 'REVIEWER', 'ADMIN']
+    const resources: string[] = [
+      "ADMIN",
+      "GET_USERS",
+      "GET_USER"
+    ]
+    console.log("TOKEN",token)
+    const hasResource = (resourcesUser: string[]) => {
+      return false
+    }
+    
     return {
-      hasRole: (role: string) => {
-        const tokenIndex = roles.indexOf(token)
-        const roleIndex = roles.indexOf(role)
-        return roleIndex >= 0 && tokenIndex >= roleIndex
-      }
+      hasResource
     }
 }
 

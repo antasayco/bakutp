@@ -3,12 +3,12 @@ import { GraphQLSchema } from "graphql";
 export interface AuthDirective {
     (directiveName: string , getUserFn: GetUserFn): {
         authDirectiveTypeDefs: string | string[],
-        authDirectiveTransformer: (schema:GraphQLSchema) => GraphQLSchema
+        authDirectiveProvider: (schema:GraphQLSchema) => GraphQLSchema
     }
 }
 
 export interface GetUserFn {
     ( token: string ): {
-        hasRole: ( role: string ) => boolean
+        hasResource: ( resources: string[] ) => boolean
     }
 }

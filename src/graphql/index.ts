@@ -1,11 +1,15 @@
-import { stitchSchemas } from '@graphql-tools/stitch';
+import { mergeSchemas } from '@graphql-tools/schema';
 
-import authSchema from './auth/schema'
+import authSchema, {authDirectiveProvider} from './auth/schema'
 import userSchema from './users/schema'
+import campaingsSchema from './campaings/schema'
 
-export default stitchSchemas({
-    subschemas:[
-        authSchema,
-        userSchema
-    ],
-})
+export default authDirectiveProvider(
+    mergeSchemas({
+        schemas:[
+            authSchema,
+            userSchema,
+            campaingsSchema
+        ]
+    })
+)
