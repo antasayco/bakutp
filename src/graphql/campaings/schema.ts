@@ -1,14 +1,15 @@
 import { makeExecutableSchema } from "@graphql-tools/schema"
 import { authDirectiveTypeDefs } from '../auth/schema'
-import CampaingsSchema from './schemas/campaing'
-
+import getCampaingTypeDefs from './schemas/campaing'
 import campaingResolver from './resolver'
-const schema = makeExecutableSchema({
-    typeDefs: [
-        ...authDirectiveTypeDefs,
-        ...CampaingsSchema
-    ],
-    resolvers: campaingResolver
-})
 
-export default schema
+export default async () => {
+    const CampaingsTypeDefs = await getCampaingTypeDefs()
+    return makeExecutableSchema({
+        typeDefs: [
+            ...authDirectiveTypeDefs,
+            ...CampaingsTypeDefs
+        ],
+        resolvers: campaingResolver
+    })
+}
