@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
-import { campaingsDB } from '../database'
 
-const { Schema, model } = mongoose 
+const { Schema } = mongoose 
 
-export default model('Campaings', new Schema(), null, {connection:campaingsDB})
+export default new Schema({},{
+    strict: false
+})

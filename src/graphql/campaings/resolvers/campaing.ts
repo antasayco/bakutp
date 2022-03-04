@@ -1,5 +1,6 @@
 import { IResolvers } from "@graphql-tools/utils"
-import Campaings from "../../../models/Campaings"
+import { campaingsDB } from "../../../database"
+import CampaingsData from "../../../models/CampaingsData"
 
 const campaings: IResolvers = {
     Query:{
@@ -7,13 +8,26 @@ const campaings: IResolvers = {
             return {
                 name:"juan"
             }
-        }
-    },
-    Mutation:{
-        addCampaingData: async (_,{name}) => {
-            return {
-                name
-            }
+        },
+        campaingsData: async () => {
+            const CampaingModel = campaingsDB.model("CampaingsData",CampaingsData, "pedro")
+            const Campaing = new CampaingModel({juan:"pedro"})
+            await Campaing.save(); 
+            return [
+                {
+                    name:"rainbow",
+                    properties:[
+                        {
+                            key:"c",
+                            value: "d"
+                        },
+                        {
+                            key:"c",
+                            value: "d"
+                        }
+                    ]
+                }
+            ]
         }
     }
 }
