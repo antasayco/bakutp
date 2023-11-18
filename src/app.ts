@@ -1,5 +1,4 @@
 import express from 'express'
-import checkVars from './helpers/checkVars'
 import { graphqlHTTP } from 'express-graphql'
 import jwt from 'express-jwt'
 import getSchema from './graphql'
@@ -7,7 +6,6 @@ import cors from 'cors'
 import getUser from './graphql/auth/getUser'
 
 const start = async () =>{
-    checkVars();
     const app = express();
 
     app.use(cors());
@@ -19,7 +17,7 @@ const start = async () =>{
             const token = req.headers.authorization || '';
         
             const user = getUser(token);
-        
+            console.log("Context", user)
             return { user };
         },
     }));

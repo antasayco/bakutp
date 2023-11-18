@@ -10,4 +10,4 @@ export default async () => {
   }
 }
 
-export const campaingsDB = mongoose.createConnection(`${conf.vars.DATABASE_URL}`,{dbName:"campaings"});
+export const campaingsDB = mongoose.createConnection(`${conf.vars.DATABASE_URL}`,{dbName:"products"});

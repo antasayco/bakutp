@@ -1,7 +1,7 @@
 export const QueryUser = `
     type Query{
         users:[User] 
-        user (email: String!): User
+        user (email: String, token: String): User
     }
 `
 export const typeUser = `
